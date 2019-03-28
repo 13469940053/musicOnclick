@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>jQuery音乐均衡器插件equalizer - 站长素材</title>
+<style type="text/css">
+    #equalizer{position: relative;float: left;width: 600px;height: 100px;margin-top: 40px;}
+    #equalizer audio{position: absolute;left: 0px;top : 0px;opacity: 0.5;z-index: 100;}
+    .equalizer_bar{position: relative;float: left;}
+    .equalizer_bar_component{position: relative;float: left;width: 100%;}
+</style>
+</head>
+<body>
+    <div class="relative_left">
+        <div id="equalizer">
+            <audio autoplay controls loop style="display:none;">
+                <source src="music/告白气球.mp3" type='audio/ogg'>
+                <source src="music/告白气球.mp3" type='audio/mpeg'>
+            </audio>
+        </div>
+    </div>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/jquery.reverseorder.js"></script>
+<script type="text/javascript" src="js/jquery.equalizer.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#ad_container span").click(function(){
+            $("#ad_container").fadeOut(400);
+        })
+    });
+</script>
+</body>
+</html>

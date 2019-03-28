@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="Author" content="张成,2508723631@qq.com">
+    <meta name="Keywords" content="潭州教育课堂所学习完成">
+    <meta name="Description" content="html+js云音乐播放器">
+    <link rel="icon" type="img/x-icon" href="images/favicon.ico">
+    <title>云音乐</title>
+    <style>
+      body{margin: 0;padding: 0;opacity:0.9;background: url("images/bg.jpg");overflow: hidden;/* overflow-y:*/}
+   /*box */
+    #music{width: 900px;height:590px;background: #666;overflow:hidden;border-radius: 20px;box-shadow: 20px 20px 20px #999;margin:0 auto;
+    position: relative;}
+    /*left */
+    #music .m-left{width: 650px;height: 520px;float: left;background: url("images/music.gif")center;}
+    /*right*/
+    #music .m-right{width: 250px;height: 520px;float:right;}
+    #music .m-right ul{list-style: none;padding:0;width: 140px;margin: 40px auto 20px;border-bottom: 2px solid #a7a7a7;}
+    #music .m-right ul li img{border-radius: 80px;border: 5px solid #888}
+    #music .m-right ul li:nth-child(2){line-height:30px;text-align:center;font-weight: bold;font-family: '华文楷体';color: white;}
+    #music .text1{width: 100%;height:300px;text-align: center;color:#ffbf00;font-family: '华文行楷';overflow: hidden;}
+    #music .text{width: 100%;height:300px;position: relative;top:0;}
+    /*bottom */
+    #music .m-bottom{width: 100%;height: 80px;float:right;background:url('images/fbg.png');position: relative;}
+
+    #music .m-bottom img:nth-child(1){margin: 20px 10px;width: 30px; height: 30px;position: absolute;left: 400px;}
+    #music .m-bottom img:nth-child(2){margin: 14px 10px;position: absolute;left:450px;}
+    #music .m-bottom img:nth-child(3){margin: 20px 10px;width: 30px; height: 30px;position: absolute;left: 500px;}
+
+    /*lrc color*/
+    .color{color:red;}
+
+    /*底部均衡器*/
+    #equalizer{position: absolute;bottom: 0;width:82%;height:110px;margin: 0 10%;}
+    .equalizer_bar{position: relative;float: left;}
+    .equalizer_bar_component{position: relative;float: left;width: 100%;}
+  </style>
+    <link rel="stylesheet" type="text/css" href="css/animate.css"></head>
+<body>
+    <!--start music-->
+    <div id="music">
+        <div class="m-left">
+            <textarea id="lrc"style="display:none;">
+                [00:00.98]告白气球
+                [00:04.19]词：方文山
+                [00:06.29]曲：周杰伦
+                [00:07.78]演唱：周杰伦
+                [00:17.78]
+                [00:23.65]塞纳河畔 左岸的咖啡
+                [00:26.45]我手一杯 品尝你的美
+                [00:28.94]
+                [00:29.49]留下唇印的嘴
+                [00:31.89]
+                [00:34.42]花店玫瑰 名字写错谁
+                [00:37.18]告白气球 风吹到对街
+                [00:40.18]微笑在天上飞
+                [00:42.59]
+                [00:44.27]你说你有点难追 想让我知难而退
+                [00:49.40]礼物不需挑最贵 只要香榭的落叶
+                [00:54.67]喔 营造浪漫的约会 不害怕搞砸一切
+                [01:00.01]拥有你就拥有 全世界
+                [01:04.15]
+                [01:05.13]亲爱的 爱上你 从那天起
+                [01:11.48]甜蜜的很轻易
+                [01:14.59]
+                [01:15.70]亲爱的 别任性 你的眼睛
+                [01:21.36]
+                [01:22.08]在说我愿意
+                [01:25.42]
+                [01:49.14]塞纳河畔 左岸的咖啡
+                [01:51.72]我手一杯 品尝你的美
+                [01:54.20]
+                [01:54.87]留下唇印的嘴
+                [01:57.31]
+                [01:59.81]花店玫瑰 名字写错谁
+                [02:02.39]告白气球 风吹到对街
+                [02:04.70]
+                [02:05.44]微笑在天上飞
+                [02:07.99]
+                [02:09.61]你说你有点难追 想让我知难而退
+                [02:14.78]礼物不需挑最贵 只要香榭的落叶
+                [02:19.65]
+                [02:20.18]喔 营造浪漫的约会 不害怕搞砸一切
+                [02:25.40]拥有你就拥有 全世界
+                [02:29.42]
+                [02:30.46]亲爱的 爱上你 从那天起
+                [02:36.87]甜蜜的很轻易
+                [02:39.98]
+                [02:41.01]亲爱的 别任性 你的眼睛
+                [02:46.74]
+                [02:47.33]在说我愿意
+                [02:51.16]
+                [02:51.85]亲爱的 爱上你 恋爱日记
+                [02:57.46]
+                [02:58.06]飘香水的回忆
+                [03:01.49]
+                [03:02.42]一整瓶 的梦境 全都有你
+                [03:08.11]
+                [03:08.82]搅拌在一起
+                [03:12.29]
+                [03:13.16]亲爱的别任性 你的眼睛
+                [03:20.01]
+                [03:21.37]在说我愿意
+            </textarea>
+        </div>
+        <!--img 四要素 宽 高 src alt （默认）
+                    用户体验
+                    别让我等
+                    别让我想
+                    别让我烦
+              -->
+        <div class="m-right">
+            <ul>
+                <li>
+                    <img src="images/tz.jpg" ></li>
+                <li>爱很简单</li>
+            </ul>
+            <div class="text1">
+                <div class="text" id="text"></div>
+            </div>
+        </div>
+        <!--按钮-->
+        <div class="m-bottom">
+            <img src="images/prev.png" height="21" width="21">
+            <img src="images/play.png" height="42" width="32" id="play">
+            <img src="images/next.png" height="21" width="21"></div>
+    </div>
+    <!--底部均衡器-->
+    <div id="equalizer">
+        <audio src="music/告白气球.mp3" id="myMusic"></audio>
+    </div>
+
+    <!--js-->
+    <script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+    <!-- 均衡器 -->
+    <script type="text/javascript" src="js/jquery.reverseorder.js"></script>
+    <script type="text/javascript" src="js/jquery.equalizer.js"></script>
+
+    <!-- //均衡器 -->
+    <script>
+        $(document).ready(function(){
+            $("#ad_container span").click(function(){
+                $("#ad_container").fadeOut(400);
+            })
+        });
+    </script>
+    <!-- //音乐歌词滚动样式代码 -->
+    <script>
+         //1.获取歌词
+        //2.解析歌词
+        var lrc =$("#lrc").val();
+            // console.log(lrc);
+        //3.对歌词初次分割
+        var lrcArr =lrc.split("[");
+             //console.log(lrcArr);
+
+             //声明存储变量
+            var html ='';
+
+             //拿到数组（用for循环）进行分析
+           // for (var i =0;i<Arr.length; i++) {//注意要减少循环体变量的使用
+            for (var i= 0,len =lrcArr.length;i<len;i++) {
+                //第二次分割
+                var arr =lrcArr[i].split("]");
+               //console.log(arr);
+               // <<~ 直接操作二进制数据>>~%  位运算符
+
+               //获取时间
+               var timer =arr[0].split(".");
+               //console.log(timer);
+               var stimer =timer[0].split(":");
+               //console.log(timer);
+               //将所有时间转换成秒
+               var ms =stimer[0]*60+stimer[1]*1;
+               //console.log(ms);
+               //获取歌词
+               var message =arr[1];
+               //console.log(message);
+               //在做个判断
+               if (message) {
+                html += "<p id ="+ ms +">"+ message + "</p>";
+               }
+                $(".text").html(html);
+            };
+            //console.log(html);
+
+            //判断
+             var flag =0;
+            //点击按钮
+            $("#play").click(function(){//当点击时候执行以下程序
+                  $(this).attr('src',$(this).attr('src')=='images/play.png'?'images/pause.png':'images/play.png');
+                if (flag ==0) {
+                    $("#myMusic").get(0).play();//播放
+                    flag =1;
+                } else{
+                    $("#myMusic").get(0).pause();//暂停
+                    flag =0;
+                };
+            });
+
+            var aP =document.getElementsByTagName("p");
+            var n=0;
+            //监听歌词播放的时间
+            $("#myMusic").get(0).addEventListener("timeupdate",function(){//时间变化率
+                //获取当前音乐播放时间
+                var timer =this.currentTime;
+                var s =parseInt(timer);
+
+                 if(document.getElementById(s)){
+                    for (var i = 0; i < aP.length; i++) {
+                        aP[i].style.cssText ="font-size:15px;"//css样式复合写法减少代码
+                    };
+                    document.getElementById(s).style.cssText ="color:red;font-size:20px; "
+
+                    //歌词同步
+                    if ( aP[n+5].id == s) {
+                            document.getElementById('text').style.top = -n*20 +"px";
+                            n++;
+                            //alert(oCon.style.top);
+                    }
+
+                }
+            });
+    </script></body>
+</html>
